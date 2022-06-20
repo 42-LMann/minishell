@@ -1,0 +1,14 @@
+# objects
+/*/*/*.o
+*/*.o
+*.o
+*.out
+
+# library
+/*/*.a
+*.a
+
+# DS_Store
+/*/*/*.DS_Store
+/*/*.DS_Store
+*.DS_Store
