@@ -6,7 +6,7 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:18:02 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/20 17:04:24 by lmann            ###   ########.fr       */
+/*   Updated: 2022/06/20 17:12:33 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ t_msh   *env_init(t_msh  *msh, char  **env)
 void    minishell(char **env)
 {
     t_msh	msh;
-	int i;
+	char	*line;
 
     msh_init(&msh);
     env_init(&msh, env);
     while (msh.exit != 0)
     {
+
 		lexer(&msh);
 		printf("~$");
 		//msh.exit = 0;
