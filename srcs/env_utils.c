@@ -6,7 +6,7 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:47:05 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/20 14:47:08 by lmann            ###   ########.fr       */
+/*   Updated: 2022/06/20 15:08:50 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*find_pwdpath(char **envp)
 
 char	*find_path(char **envp, char *var)
 {
-	while (ft_strncmp(var, *envp, (ft_strlen(var) - 1))
+	while (ft_strncmp(var, *envp, (ft_strlen(var) - 1)))
 		envp++;
 	return (*envp + ft_strlen(var));
 }

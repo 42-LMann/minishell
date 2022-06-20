@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 14:46:30 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/20 16:51:06 by lmann            ###   ########.fr       */
+/*   Created: 2022/06/20 16:17:19 by lmann             #+#    #+#             */
+/*   Updated: 2022/06/20 16:30:23 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DEFINES_H
+# define DEFINES_H
+
 #include "minishell.h"
 
-int	main(int argc, char *argv[argc], char **env)
-{
-	(void)argc;
-	(void)argv;
-	minishell(env);
-	return(0);
-}
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
+
+#endif
