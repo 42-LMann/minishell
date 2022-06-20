@@ -6,24 +6,36 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 14:55:38 by lmann             #+#    #+#             */
-/*   Updated: 2022/04/01 13:15:27 by lmann            ###   ########.fr       */
+/*   Updated: 2022/04/29 15:35:19 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-/*LIBFT HEADERS*/
+/* -----HEADERS-----*/
+/* LIBFT HEADERS */
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
 
-/*PRINTF HEADERS*/
+/* PRINTF HEADERS */
 
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+/* GNL HEADERS */
+
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+
+/* -----DEFINES----- */
+/* GNL Defines */
+
+# define BUFFER_SIZE 100
 
 typedef struct s_list
 {
@@ -85,5 +97,15 @@ void	ft_unint(t_printf *tab, char character);
 void	ft_charstr(t_printf *tab, char character);
 void	ft_put_unsign_nbr_fd(unsigned int nbr, int fd);
 void	ft_nbrcount(t_printf *tab, long n);
+
+//--------GNL Functions----------------//
+
+char	*get_next_line(int fd);
+void	ft_free_rest(char *mem, int read_val);
+int		ft_get_buffer(int fd, char *buf, int buf_size);
+
+//--------UTIL Functions---------------//
+
+void	ft_free_array(void **array);
 
 #endif

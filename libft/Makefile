@@ -56,7 +56,12 @@ SRCS_PRINTF = 	printf.c \
 				charstr.c \
 				integer.c \
 
-SRCS_FILES = $(SRCS_LIBFT)	$(SRCS_PRINTF)
+SRCS_GNL =		get_next_line.c \
+				get_next_line_utils.c \
+
+SRCS_UTILS =	ft_free_array.c \
+
+SRCS_FILES = $(SRCS_LIBFT)	$(SRCS_PRINTF) $(SRCS_GNL) $(SRCS_UTILS)
 
 OBJS = $(SRCS:%.c=%.o)
 
