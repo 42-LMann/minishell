@@ -6,7 +6,7 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:45:51 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/20 16:45:23 by lmann            ###   ########.fr       */
+/*   Updated: 2022/06/23 17:28:21 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ typedef struct s_token
 
 }	t_token;
 
+typedef struct s_fds
+{
+	int		fdin;
+	int		fdout;
+	int		pipein;
+	int		pipeout;
+	int		pid;
+}	t_fds;
+
+
 typedef struct s_env
 {
 	char		**env_list;
@@ -63,6 +73,7 @@ typedef struct s_env
 
 typedef struct s_msh
 {
+	t_fds		fds;
 	t_env		env;
 	int			exit;
 	int			in;
@@ -73,10 +84,11 @@ char	*find_path(char **envp, char *var);
 
 void    minishell(char **env);
 
-t_msh   *env_init(t_msh  *msh, char  **env);
+void	*env_init(t_msh  *msh, char  **env);
+void	*msh_init(t_msh  *msh);
+void	*fd_init(t_msh  *msh);
 
 t_msh   *free_env(t_msh *msh);
-
-t_msh	*free_msh(t_msh *msh);
+void	*free_msh(t_msh *msh);
 
 #endif
