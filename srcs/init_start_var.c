@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void   *fd_init(t_msh  *msh)
+t_err   *fd_init(t_msh  *msh)
 {
 	msh->fds.fdin = -1;
 	msh->fds.fdout = -1;
@@ -21,28 +21,43 @@ void   *fd_init(t_msh  *msh)
 	msh->fds.pid = -1;
 }
 
-void	*msh_init(t_msh  *msh)
+t_err	*msh_init(t_msh  *msh)
 {
+
+	msh->exec = 1;
 	msh->exit = 0;
 	msh->in = dup(STDIN);
 	msh->out = dup(STDOUT);
 }
 
-void	*env_init(t_msh  *msh, char  **env)
+t_err	mv_to_ms_envp(char *env_var, t_env *custom_envp)
+{
+	char	*key;
+	char	*value;
+
+	if (!env_var)
+		return(printf(RED "[copy_to_custom_env] str to NULL..\n" RESET));
+	if (get_env_key(env_var, &key) == MALLOC_FAIL)
+		return(MALLOC_FAIL);
+}
+
+t_err	*env_init(t_msh  *msh, char  **envp)
 {
 	size_t i;
 
+	ft_bzero(msh, sizeof(t_msh));
 	i = 0;
-	while (env[i])
+	while (envp[i])
 		i++;
-	msh->env.env_list = (char **)malloc(sizeof(char *) * (i + 1));
+	msh->env = ft_calloc(i + 3, sizeof(t_env))
+	if (!msh->env)
+		return (MALLOC_FAIL);
+	//msh->env.env_list = (char **)malloc(sizeof(char *) * (i + 1));
 	i = 0;
-	while (env[i])
+	while (envp[i])
 	{
-		msh->env.env_list[i] = ft_strdup(env[i]);
+		//msh->env.env_list[i] = ft_strdup(envp[i]);
+		mv_to_ms_envp(envp[i], &msh->env[i])
 		i++;
 	}
-	msh->env.pwdpath = NULL;
-	msh->env.cmdpath = NULL;
-	msh->env.cmd_pathways = NULL;
 }
