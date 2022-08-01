@@ -1,51 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   datatypes.h                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 11:29:33 by lmann             #+#    #+#             */
-/*   Updated: 2022/08/01 12:50:39 by lmann            ###   ########.fr       */
+/*   Created: 2022/08/01 12:51:16 by lmann             #+#    #+#             */
+/*   Updated: 2022/08/01 16:46:09 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATATYPES_H
-# define DATATYPES_H
+#ifndef ENV_H
+# define ENV_H
 
 # include "minishell.h"
-# include <termios.h>
+# include "libft.h"
 
+t_list  *g_envs;
 
-
-typedef enum e_bool
-{
-    FALSE,
-    TRUE
-}   t_bool;
-
-typedef enum e_err
-{
-    NO_ERROR,
-    MALLOC_FAIL,
-    INPUT_ERR,
-    KEY_ERR,
-    NO_VALUE,
-    NO_KEY,
-    SYNTAX_ERR,
-    EMPTY,
-    DEFAULT_ERR
-}   t_err;
-
-typedef enum s_nodetype
-{
-    PIPE,
-    NO_PIPE,
-    REDIR_IN,
-    REDIR_OUT,
-    REDIR_APP,
-    HERE_DOC,
-    CMD
-}   t_nodetype;
+t_list  *env_init(t_list **lst, char **envp);
+t_err	set_var(t_list *env_list, char *var, char *value);
+char	*get_var(t_list *list, char *var);
 
 #endif

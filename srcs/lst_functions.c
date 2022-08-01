@@ -1,31 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   lst_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:40:17 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/23 15:35:35 by lmann            ###   ########.fr       */
+/*   Updated: 2022/08/01 15:57:42 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_msh   *free_env(t_msh *msh)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	int i;
+	t_list *ptr;
 
-	i = 0;
-	while (msh->env.env_list[i])
+	if (!alst || !new)
+		return ;
+	if (!*alst)
 	{
-		free(msh->env.env_list[i]);
-		i++;
+		*alst = new;
+		return ;
 	}
-	return(msh);
+	ptr = *alst;
+	while (ptr->next)
+		ptr = ptr->next;
+	ptr->next = new;
 }
 
-void   *free_msh(t_msh *msh)
+void	ft_lstdelete(t_list *lst, void (*del)(void*))
 {
-	return(msh);
+	if (!lst || !del)
+		return;
+	del(lst->content);
+	free(lst);
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list *ptr;
+	t_list *previous;
+
+	if (!lst || !*lst || !del)
+		return;
+	ptr = *lst;
+	while (ptr)
+	{
+		previous = ptr;
+		ptr = ptr->next;
+		ft_lstdelete(previous, del);
+	}
+	*lst = 0;
 }

@@ -6,13 +6,13 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:38:13 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/23 18:21:12 by lmann            ###   ########.fr       */
+/*   Updated: 2022/08/01 12:04:16 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	lexer(t_msh *msh, char *line)
-{
+//void	lexer(t_msh *msh, char *line)
+//{
 
-}
+//}

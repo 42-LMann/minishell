@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_colours.h                                     :+:      :+:    :+:   */
+/*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 11:29:41 by lmann             #+#    #+#             */
-/*   Updated: 2022/08/01 11:30:15 by lmann            ###   ########.fr       */
+/*   Created: 2022/06/23 14:24:02 by lmann             #+#    #+#             */
+/*   Updated: 2022/08/01 15:55:14 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TERM_COLOURS_H
-# define TERM_COLOURS_H
+#include "minishell.h"
 
-# define BLK "\e[0;30m"
-# define RED "\e[0;31m"
-# define GRN "\e[0;32m"
-# define YEL "\e[0;33m"
-# define BLU "\e[0;34m"
-# define MAG "\e[0;35m"
-# define CYN "\e[0;36m"
-# define WHT "\e[0;37m"
+t_list	*env_init(t_list **lst, char  **envp)
+{
+	t_list	*temp;
+	int 	i;
 
-# define RESET "\e[0m"
-
-#endif
+	i = 0;
+	temp = NULL;
+	while (envp[i])
+	{
+		if (!(temp = malloc(sizeof(t_list))))
+			return (NULL);
+		if (!(temp->content = ft_strdup(envp[i])))
+			return (NULL);
+		temp->next = 0;
+		ft_lstadd_back(lst, temp);
+		i++;
+	}
+	return (*lst);
+}

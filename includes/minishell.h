@@ -6,7 +6,7 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:45:51 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/23 17:28:21 by lmann            ###   ########.fr       */
+/*   Updated: 2022/08/01 16:51:53 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "datatypes.h"
 # include "defines.h"
+# include "term_colours.h"
+# include "env.h"
 
 /* Custom function library */
 # include "libft.h"
@@ -45,11 +47,19 @@
 /* to perror */
 # include <stdio.h>
 
+typedef int	t_prompt;
+t_prompt	g_print;
+
+typedef struct s_cmd
+{
+	char	**arg;
+	char	**input_arg;	
+}	t_cmd;
 
 typedef struct s_token
 {
-	t_token_list	*lexer;
-	t_tree			*tree;
+	//t_token_list	*lexer;
+	//t_tree			*tree;
 }	t_token;
 
 typedef struct s_fds
@@ -62,35 +72,15 @@ typedef struct s_fds
 }	t_fds;
 
 
-typedef struct s_env
-{
-	char		**env_list;
-	//char		*paths;
-	char		**cmdpath;
-	char		**pwdpath;
-	char		**cmd_pathways;
-	//char		**cmd_args;
-	//char		*cmd;
-}	t_env;
+char	*find_path(t_list *env_lst, char *var);
+char	*find_pwdpath(char **envp);
 
-typedef struct s_msh
-{
-	t_executor	*exec;
-	t_fds		*fds;
-	t_env		**env;
-	struct terminos	terminos_p;
-	t_tree		**loc_tree_ptr;
-}	t_msh;
+int    minishell(char **env);
 
-char	*find_path(char **envp, char *var);
+t_list	*env_init(t_list **lst, char  **envp);
 
-void    minishell(char **env);
-
-void	*env_init(t_msh *msh, char **env);
-void	*msh_init(t_msh *msh);
-void	*fd_init(t_msh *msh);
-
-t_msh   *free_env(t_msh *msh);
-void	*free_msh(t_msh *msh);
+void	ft_lstadd_back(t_list **alst, t_list *new);
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	ft_lstdelete(t_list *lst, void (*del)(void*));
 
 #endif

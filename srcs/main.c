@@ -6,32 +6,33 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:46:30 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/20 16:51:06 by lmann            ###   ########.fr       */
+/*   Updated: 2022/08/01 16:54:09 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int    minishell(char **env)
+void	prompt(void)
 {
-	
-    t_msh	msh;
-	char	*line;
+	printf("%s@%s:%s$ ",
+			find_path(g_envs, "USER="), find_path(g_envs, "LOGNAME="), find_path(g_envs, "PWD="));
+}
 
+int	minishell(char **env)
+{
+	g_print	= 0;
+	char	*buffer;
+	int		status = 0;
+	t_cmd	cmd;
 
-	if ((msh_init(&msh) || env_init(&msh, env) || fd_init(&msh)) == MALLOC_FAIL)
-		return (MALLOC_FAIL);
-	save_term_settings(&msh->terminos_p);
-    while (mini.exit == 0)
+	g_envs = env_init(&g_envs, env);
+    while (status == 0)
     {
-		printf("%S@%S:%S$ ",
-			find_path(env, "USER"), find_path(env, "NAME"), find_path(env, "PWD"));
-		lexer(&msh, &line);
-		parser(&msh);
-
+		//lexer(&msh, &line);
+		//parser(&msh);
+		status = 1;
     }
-	free_env(&msh);
-	free_msh(&msh);
+	ft_lstclear(&g_envs, free);
 	return (0);
 }
 
@@ -42,3 +43,5 @@ int	main(int argc, char *argv[argc], char **env)
 	minishell(env);
 	return(0);
 }
+
+https://github.com/backslash-zero/minishell/blob/master/src/execs/reads.c
