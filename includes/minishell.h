@@ -13,6 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "datatypes.h"
 # include "defines.h"
 
 /* Custom function library */
@@ -47,7 +48,8 @@
 
 typedef struct s_token
 {
-
+	t_token_list	*lexer;
+	t_tree			*tree;
 }	t_token;
 
 typedef struct s_fds
@@ -73,20 +75,20 @@ typedef struct s_env
 
 typedef struct s_msh
 {
-	t_fds		fds;
-	t_env		env;
-	int			exit;
-	int			in;
-	int			out;
+	t_executor	*exec;
+	t_fds		*fds;
+	t_env		**env;
+	struct terminos	terminos_p;
+	t_tree		**loc_tree_ptr;
 }	t_msh;
 
 char	*find_path(char **envp, char *var);
 
 void    minishell(char **env);
 
-void	*env_init(t_msh  *msh, char  **env);
-void	*msh_init(t_msh  *msh);
-void	*fd_init(t_msh  *msh);
+void	*env_init(t_msh *msh, char **env);
+void	*msh_init(t_msh *msh);
+void	*fd_init(t_msh *msh);
 
 t_msh   *free_env(t_msh *msh);
 void	*free_msh(t_msh *msh);
