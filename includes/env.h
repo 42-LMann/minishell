@@ -16,6 +16,7 @@
 # include "minishell.h"
 # include "libft.h"
 
+char    *g_cmdline;
 t_list  *g_envs;
 
 t_list  *env_init(t_list **lst, char **envp);
