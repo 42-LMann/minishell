@@ -6,7 +6,7 @@
 /*   By: lmann <lmann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:17:19 by lmann             #+#    #+#             */
-/*   Updated: 2022/06/20 16:30:23 by lmann            ###   ########.fr       */
+/*   Updated: 2022/08/19 14:49:47 by lmann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "minishell.h"
 
+
+# define PROMPT "Minishell $"
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
